@@ -8,8 +8,8 @@ public class StatusManager : MonoBehaviour
 {
     //ステータス
     public GameObject attackStatus; //テキストを入れる変数
-    private Text attackText;        //ステータス表示用変数
-    private int attack = 0;         //攻撃力ステータス
+    private Text attackText;        //ステータスのテキストボックス用変数
+    private int attack = 0;         //ステータス表示用変数
 
     public GameObject defenseStatus;
     private Text defenseText;
@@ -32,10 +32,12 @@ public class StatusManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //テキストボックスのコンポーネントを取得
         attackText = attackStatus.GetComponent<Text>();
         defenseText = defenseStatus.GetComponent<Text>();
         speedText = speedStatus.GetComponent<Text>();
 
+        //スクリプトを取得
         attackButtonScript = attackButton.GetComponent<ButtonManager>();
         defenseButtonScript = defenseButton.GetComponent<ButtonManager>();
         speedButtonScript = speedButton.GetComponent<ButtonManager>();
@@ -44,6 +46,7 @@ public class StatusManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ステータスを表示用変数に代入
         attack = attackButtonScript.attackStatus;
         attackText.text ="攻撃:"+ attack.ToString();
 
