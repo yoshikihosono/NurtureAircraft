@@ -20,14 +20,10 @@ public class StatusManager : MonoBehaviour
     private int speed = 0;
 
     //スクリプトがアタッチされているオブジェクトを受け取る変数
-    public GameObject attackButton;
-    public GameObject defenseButton;
-    public GameObject speedButton;
+    public GameObject Buttons;
 
     //スクリプトを受け取る変数
-    ButtonManager attackButtonScript;
-    ButtonManager defenseButtonScript;
-    ButtonManager speedButtonScript;
+    ButtonManager buttonScript;
 
     // Start is called before the first frame update
     void Start()
@@ -38,22 +34,20 @@ public class StatusManager : MonoBehaviour
         speedText = speedStatus.GetComponent<Text>();
 
         //スクリプトを取得
-        attackButtonScript = attackButton.GetComponent<ButtonManager>();
-        defenseButtonScript = defenseButton.GetComponent<ButtonManager>();
-        speedButtonScript = speedButton.GetComponent<ButtonManager>();
+        buttonScript = Buttons.GetComponent<ButtonManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //ステータスを表示用変数に代入
-        attack = attackButtonScript.attackStatus;
+        attack = buttonScript.attackStatus;
         attackText.text ="攻撃:"+ attack.ToString();
 
-        defense = defenseButtonScript.defenseStatus;
+        defense = buttonScript.defenseStatus;
         defenseText.text = "防御:" + defense.ToString();
 
-        speed = speedButtonScript.speedStatus;
+        speed = buttonScript.speedStatus;
         speedText.text = "速さ:" + speed.ToString();
     }
 }

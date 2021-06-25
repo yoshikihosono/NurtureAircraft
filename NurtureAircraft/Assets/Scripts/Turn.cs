@@ -20,6 +20,14 @@ public class Turn : MonoBehaviour
     void Update()
     {
         //ターン表示
-        turnText.text = "あと"+i.ToString()+"ターン";
+        turnText.text = "あと" + i.ToString() + "ターン";
+    }
+
+    //ターンを減らす関数
+    public void TurnCountDown()
+    {
+       i -= 1;
+
+        if (i < 0) i = 0;
     }
 }
