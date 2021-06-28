@@ -6,28 +6,28 @@ using UnityEngine.UI;
 public class Turn : MonoBehaviour
 {
     public GameObject turn; //ターンのテキストボックス用変数
-    private Text turnText;  //ターン表示用変数
+    private Text turnText;  //ターン表示テキスト用変数
 
-    private int i;
+    private int turnCount;  //実際のターン数用変数
     // Start is called before the first frame update
     void Start()
     {
         turnText = turn.GetComponent<Text>();
-        i = 4;
+        turnCount = 4;
     }
 
     // Update is called once per frame
     void Update()
     {
         //ターン表示
-        turnText.text = "あと" + i.ToString() + "ターン";
+        turnText.text = turnCount.ToString();
     }
 
     //ターンを減らす関数
     public void TurnCountDown()
     {
-       i -= 1;
+        turnCount -= 1;
 
-        if (i < 0) i = 0;
+        if (turnCount < 0) turnCount = 0;
     }
 }

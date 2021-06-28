@@ -40,6 +40,9 @@ public class ButtonManager : MonoBehaviour
 
         //ステータス値を増やす
         attackStatus += 10;
+
+        PlayerPrefs.SetInt("ATTACK", attackStatus);
+        PlayerPrefs.Save();
     }
 
 
@@ -50,6 +53,9 @@ public class ButtonManager : MonoBehaviour
 
         //ステータス値を増やす
         defenseStatus += 10;
+
+        PlayerPrefs.SetInt("DEFENSE", defenseStatus);
+        PlayerPrefs.Save();
     }
 
 
@@ -60,5 +66,8 @@ public class ButtonManager : MonoBehaviour
 
         //ステータス値を増やす
         speedStatus += 10;
+
+        PlayerPrefs.SetInt("SPEED", speedStatus);
+        PlayerPrefs.Save();
     }
 }
