@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Turn
+    uniqueID: 1548409727
+    locked: 0
+  - name: damage
+    uniqueID: 907653647
+    locked: 0
