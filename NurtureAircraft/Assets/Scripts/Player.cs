@@ -10,11 +10,18 @@ public class Player : MonoBehaviour
         public float xMin, xMax, yMin, yMax;
     }
     [SerializeField] Bounds bounds;
-    //public float xMin, xMax, yMin, yMax;
 
-    [SerializeField, Range(0f, 1f)]
-    private float followStrength;
+    public float moveSpeed;
 
+    [SerializeField]
+    private float movementX, movementY;
+    Vector3 touchScreenPosition;
+    Vector3 inputMousePosition;
+
+    Vector3 targetPos;
+
+    [SerializeField]
+    private float HP;
 
     // Start is called before the first frame update
     void Start()
@@ -25,22 +32,49 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 touchScreenPosition = Input.mousePosition;
-        //var targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        /*移動制限*/
+        targetPos = transform.position;
+        targetPos.x = Mathf.Clamp(transform.position.x, bounds.xMin, bounds.xMax);
+        targetPos.y = Mathf.Clamp(transform.position.y, bounds.yMin, bounds.yMax);
+        transform.position = targetPos;
+        /*移動制限*/
 
-        //targetPos.x = Mathf.Clamp(targetPos.x, bounds.xMin, bounds.xMax);
-        //touchScreenPosition.x = Mathf.Clamp(touchScreenPosition.x, bounds.xMin, bounds.xMax);
-        //targetPos.y = Mathf.Clamp(targetPos.y, bounds.yMin, bounds.yMax);
-        //touchScreenPosition.y = Mathf.Clamp(touchScreenPosition.y, bounds.yMin, bounds.yMax);
+        //マウス座標の取得
+        touchScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-
+        //Z値は常に10に
         touchScreenPosition.z = 10f;
-        Camera gameCamera = Camera.main;
-        Vector3 touchWorldPos = gameCamera.ScreenToWorldPoint(touchScreenPosition);
 
-        //targetPos.z = 0f;
+        //マウスが押された瞬間のマウスの座標を取得
+        if (Input.GetMouseButtonDown(0))
+        {
+            inputMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
 
+        //押された瞬間の座標と現在のマウスの座標を比較してどっち方向にいどうするかを求める
+        movementX = touchScreenPosition.x - inputMousePosition.x;
+        movementY = touchScreenPosition.y - inputMousePosition.y;
+
+        //移動量は1以上にならないように
+        movementX = Mathf.Clamp(movementX, -1, 1);
+        movementY = Mathf.Clamp(movementY, -1, 1);
+
+        //押されている間は移動します
         if (Input.GetMouseButton(0))
-        transform.position = Vector3.Lerp(transform.position, touchWorldPos, followStrength);
+        {
+            transform.position += new Vector3(moveSpeed * movementX, moveSpeed * movementY, 0);
+        }
+
+        //HPが０になったら
+        if(HP < 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    //ダメージ処理
+    public void AddDamage(int damage)
+    {
+        HP -= damage;
     }
 }
