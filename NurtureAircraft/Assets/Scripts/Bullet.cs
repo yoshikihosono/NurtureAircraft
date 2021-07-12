@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
     {
         transform.position += new Vector3(0.0f, 0.1f, 0.0f);
 
-
-        Destroy(this.gameObject, 3);
+        Destroy(this.gameObject, 1.2f);
     }
 }

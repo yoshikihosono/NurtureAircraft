@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     }
     [SerializeField] Bounds bounds;
 
-    public float moveSpeed;
+    public int moveSpeed;
 
     [SerializeField]
     private float movementX, movementY;
@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        HP = PlayerPrefs.GetInt("DEFENSE", 1);
+        moveSpeed = PlayerPrefs.GetInt("SPEED", 0);
     }
 
     // Update is called once per frame
@@ -62,7 +63,7 @@ public class Player : MonoBehaviour
         //押されている間は移動します
         if (Input.GetMouseButton(0))
         {
-            transform.position += new Vector3(moveSpeed * movementX, moveSpeed * movementY, 0);
+            transform.position += new Vector3(moveSpeed * movementX * 0.001f, moveSpeed * movementY * 0.001f, 0);
         }
 
         //HPが０になったら
