@@ -19,7 +19,7 @@ public class EnemyBulletFactry : MonoBehaviour
     {
         if (count > cooltime)
         {
-            Instantiate(enemyBullet, new Vector3(transform.position.x, transform.position.y - 2, transform.position.z), Quaternion.identity);
+            Instantiate(enemyBullet, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Quaternion.identity);
             count = 0;
         }
         count += Time.deltaTime;

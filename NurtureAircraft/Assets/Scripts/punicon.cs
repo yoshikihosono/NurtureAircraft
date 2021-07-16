@@ -18,9 +18,9 @@ public class punicon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputMousePosition.z = 1;
+        inputMousePosition.z = 10;
         InputSphere.transform.position = inputMousePosition;
-        mousePosition.z = 1;
+        mousePosition.z = 10;
         mouseSphere.transform.position = mousePosition;
 
         if(Input.GetMouseButtonDown(0))

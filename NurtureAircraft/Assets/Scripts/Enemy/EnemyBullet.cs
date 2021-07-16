@@ -15,7 +15,7 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.position -= new Vector3(0, 0.1f, 0);
+        this.gameObject.transform.position -= new Vector3(0, 0.005f, 0);
         Destroy(this.gameObject, 5);
     }
 

@@ -20,8 +20,7 @@ public class Player : MonoBehaviour
 
     Vector3 targetPos;
 
-    [SerializeField]
-    private float HP;
+    public float HP;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour
         }
 
         //HPが０になったら
-        if(HP < 0)
+        if(HP <= 0)
         {
             Destroy(this.gameObject);
         }
